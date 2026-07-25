@@ -64,32 +64,104 @@ $$
 
 ## Analog Signal vs Digital Signal
 
-  Analog Signal          Digital Signal
-  ---------------------- --------------------------------
-  Continuous in time     Discrete in time
-  Represented as x(t)    Represented as x\[n\]
-  Infinite values        Finite sampled values
-  More noise sensitive   Less noise sensitive
-  Harder to process      Easier to process by computers
+  **Analog Signal**           **Digital Signal**
+  --------------------------- --------------------------------
+  Continuous in time          Discrete in time
+  Represented as `x(t)`       Represented as `x[n]`
+  Infinite number of values   Finite sampled values
+  More sensitive to noise     Less sensitive to noise
+  Harder to process           Easier to process by computers
 
 ------------------------------------------------------------------------
 
 ## x(t) vs x\[n\]
 
-  x(t)                     x\[n\]
-  ------------------------ -----------------------
-  Continuous-time signal   Discrete-time signal
-  Uses time t              Uses sample index n
-  Infinite time instants   Sampled instants only
+  **x(t)**                   **x\[n\]**
+  -------------------------- ---------------------------------
+  Continuous-time signal     Discrete-time signal
+  Uses continuous time `t`   Uses sample index `n`
+  Exists at every instant    Exists only at sampled instants
+  Analog representation      Digital representation
 
 ------------------------------------------------------------------------
 
 ## Sample Point vs Sample Value
 
-  Sample Point                       Sample Value
-  ---------------------------------- ----------------------------------
-  Time/index where sampling occurs   Amplitude at that point
-  Stored in time array               Stored in signal/amplitude array
+  -----------------------------------------------------------------------
+  **Sample Point**                    **Sample Value**
+  ----------------------------------- -----------------------------------
+  Time/index where sampling occurs    Amplitude at that sampling instant
+
+  Represents **when** the signal is   Represents **what value** the
+  measured                            signal has
+
+  Stored in the `time` array          Stored in the `signal` (or
+                                      amplitude) array
+  -----------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+## Signal Frequency vs Sampling Frequency
+
+  -----------------------------------------------------------------------
+  **Signal Frequency (`f_signal`)**     **Sampling Frequency (`f_s`)**
+  ------------------------------------- ---------------------------------
+  Number of cycles per second           Number of samples taken per
+                                        second
+
+  Property of the signal                Property of the sampling process
+
+  Determines how fast the wave          Determines how often the wave is
+  oscillates                            measured
+
+  Used inside `sin(2πft)`               Used to create the time vector
+                                        (`1/f_s`)
+
+  Unit: Hertz (Hz)                      Unit: Hertz (Hz)
+  -----------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+## `np.arange()` vs `np.linspace()`
+
+  -----------------------------------------------------------------------
+  **np.arange()**                   **np.linspace()**
+  --------------------------------- -------------------------------------
+  Uses a fixed step size            Uses a fixed number of points
+
+  Stop value is usually excluded    Endpoint is included by default
+
+  Good when spacing is known        Good when total samples are known
+
+  Syntax:                           Syntax:
+  `np.arange(start, stop, step)`    `np.linspace(start, stop, num)`
+  -----------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+## `plt.plot()` vs `plt.stem()`
+
+  **plt.plot()**                       **plt.stem()**
+  ------------------------------------ -----------------------------------
+  Used for continuous signals          Used for discrete signals
+  Connects adjacent points             Draws vertical stems with markers
+  Produces a smooth curve              Shows individual samples clearly
+  Best for analog-like visualization   Best for sampled signals
+
+------------------------------------------------------------------------
+
+## `plt.plot()` vs `plt.scatter()`
+
+  -----------------------------------------------------------------------
+  **plt.plot()**                   **plt.scatter()**
+  -------------------------------- --------------------------------------
+  Connects data points             Displays only individual points
+
+  Suitable for continuous signals  Suitable for showing sample locations
+
+  Creates a line graph             Creates a scatter plot
+  -----------------------------------------------------------------------
+
 
 ------------------------------------------------------------------------
 

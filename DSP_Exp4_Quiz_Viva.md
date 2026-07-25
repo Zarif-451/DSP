@@ -10,19 +10,19 @@
 
 **Answer:**
 
-The Z-Transform converts a discrete-time signal into its complex frequency-domain representation. It is widely used for analyzing discrete-time systems, digital filters, and DSP algorithms.
+The Z-Transform converts a discrete-time signal into its complex frequency-domain representation. It is used to analyze discrete-time systems, digital filters, and DSP algorithms by transforming signals from the time domain into the Z-domain.
 
-### General Formula
+### General Z-Transform
 
-\[
+$$
 X(z)=\sum_{n=-\infty}^{\infty}x[n]z^{-n}
-\]
+$$
 
-For causal signals,
+### For Causal Signals
 
-\[
+$$
 X(z)=\sum_{n=0}^{\infty}x[n]z^{-n}
-\]
+$$
 
 ---
 
@@ -30,7 +30,10 @@ X(z)=\sum_{n=0}^{\infty}x[n]z^{-n}
 
 **Answer:**
 
-It simplifies the analysis of discrete-time systems, converts difference equations into algebraic equations, and is widely used in digital filter design and control systems.
+- Converts difference equations into algebraic equations.
+- Simplifies analysis of discrete-time systems.
+- Used in digital filter design and control systems.
+- Helps determine stability and system behavior.
 
 ---
 
@@ -38,7 +41,7 @@ It simplifies the analysis of discrete-time systems, converts difference equatio
 
 **Answer:**
 
-A causal signal exists only for \(n \ge 0\). Most practical DSP systems are causal because they do not depend on future values.
+A causal signal exists only for `n ≥ 0`. It does not depend on future values and is therefore physically realizable.
 
 ---
 
@@ -46,7 +49,7 @@ A causal signal exists only for \(n \ge 0\). Most practical DSP systems are caus
 
 **Answer:**
 
-The inverse Z-Transform converts a frequency-domain expression \(X(z)\) back into the original discrete-time signal \(x[n]\).
+The inverse Z-Transform converts a Z-domain expression back into its original discrete-time signal.
 
 ---
 
@@ -54,10 +57,10 @@ The inverse Z-Transform converts a frequency-domain expression \(X(z)\) back int
 
 | **Signal** | **Mathematical Form** | **Z-Transform** |
 |------------|-----------------------|-----------------|
-| Unit Step | \(u[n]\) | \(\frac{z}{z-1}\) |
-| Exponential | \(a^n u[n]\) | \(\frac{z}{z-a}\) |
-| Ramp | \(nu[n]\) | \(\frac{z}{(z-1)^2}\) |
-| Delayed Impulse | \(\delta[n-k]\) | \(z^{-k}\) |
+| Unit Step | `u[n]` | `z/(z-1)` |
+| Exponential | `a^n u[n]` | `z/(z-a)` |
+| Ramp | `n u[n]` | `z/(z-1)^2` |
+| Delayed Impulse | `δ[n-k]` | `z^-k` |
 
 ---
 
@@ -67,9 +70,10 @@ The inverse Z-Transform converts a frequency-domain expression \(X(z)\) back int
 
 | **Z-Transform** | **Fourier Transform** |
 |-----------------|-----------------------|
-| Uses complex variable \(z\) | Uses frequency \(\omega\) |
-| More general | Special case of Z-transform |
+| Uses complex variable `z` | Uses frequency `ω` |
+| More general transform | Special case of Z-Transform |
 | Used for stability analysis | Used for frequency analysis |
+| Includes ROC | No ROC |
 
 ---
 
@@ -77,9 +81,9 @@ The inverse Z-Transform converts a frequency-domain expression \(X(z)\) back int
 
 | **Forward** | **Inverse** |
 |-------------|-------------|
-| Time → Z-domain | Z-domain → Time |
-| Computes \(X(z)\) | Computes \(x[n]\) |
-| Analysis | Signal reconstruction |
+| Time Domain → Z Domain | Z Domain → Time Domain |
+| Computes `X(z)` | Computes `x[n]` |
+| Used for analysis | Used for reconstruction |
 
 ---
 
@@ -87,9 +91,9 @@ The inverse Z-Transform converts a frequency-domain expression \(X(z)\) back int
 
 | **Unit Step** | **Ramp** |
 |---------------|----------|
-| Constant amplitude | Linearly increasing |
-| \(u[n]\) | \(nu[n]\) |
-| \(z/(z-1)\) | \(z/(z-1)^2\) |
+| Constant value | Linearly increasing |
+| `u[n]` | `n u[n]` |
+| `z/(z-1)` | `z/(z-1)^2` |
 
 ---
 
@@ -97,9 +101,9 @@ The inverse Z-Transform converts a frequency-domain expression \(X(z)\) back int
 
 | **Unit Step** | **Exponential** |
 |---------------|-----------------|
-| Constant value | Changes exponentially |
-| \(u[n]\) | \(a^n u[n]\) |
-| No parameter \(a\) | Depends on \(a\) |
+| Constant amplitude | Exponential growth/decay |
+| `u[n]` | `a^n u[n]` |
+| No parameter | Depends on `a` |
 
 ---
 
@@ -107,157 +111,133 @@ The inverse Z-Transform converts a frequency-domain expression \(X(z)\) back int
 
 ## Why is SymPy used?
 
-SymPy performs symbolic mathematics such as summation, simplification, and symbolic Z-Transforms.
+SymPy performs symbolic mathematics, including symbolic summation and algebraic simplification required for Z-Transforms.
 
 ## What does `sp.symbols()` do?
 
-Creates symbolic mathematical variables like `n`, `z`, and `a`.
+Creates symbolic variables such as `n`, `z`, and `a`.
 
 ## What does `sp.summation()` do?
 
-Computes symbolic summations according to the mathematical formula.
+Evaluates symbolic summations according to the Z-Transform definition.
 
 ## What is `sp.oo`?
 
-Represents mathematical infinity (\(\infty\)).
+Represents mathematical infinity.
 
-## Why is `z**(-n)` used?
+## Why use `z**(-n)`?
 
-Because the definition of the Z-Transform contains the factor \(z^{-n}\).
+Because the Z-Transform definition contains the term `z^{-n}`.
 
 ## Why use `sp.pprint()`?
 
-It displays mathematical expressions in a readable textbook-style format.
+It prints mathematical expressions in a readable textbook-style format.
 
 ---
 
 # Part E – Code Viva
 
-### Why do we write
+### Why write?
 
 ```python
-n, z = sp.symbols('n z')
+n, z = sp.symbols("n z")
 ```
 
-To declare symbolic variables used in mathematical expressions.
+It declares symbolic variables used in symbolic mathematics.
 
-### Why is
+### Why write?
 
 ```python
-X = sp.summation(z**(-n), (n,0,sp.oo))
+X = sp.summation(z**(-n), (n, 0, sp.oo))
 ```
 
-used?
+It implements the Z-Transform of the unit-step signal directly from its mathematical definition.
 
-It directly implements the Z-Transform formula for the unit-step signal.
+### Why does the summation start at `0`?
 
-### Why does the summation start from 0?
+Because the signal is causal (`n ≥ 0`).
 
-Because the signal is causal (\(n \ge 0\)).
+### Why may `inverse_z_transform()` fail?
 
-### Why is `inverse_z_transform()` unavailable in some versions?
-
-Older SymPy versions do not implement this function.
+Some older SymPy versions do not implement this function.
 
 ---
 
-# Part F – Formula-Based Viva
+# Part F – Formula Viva
 
-## General Z-Transform
+## General Formula
 
-\[
+$$
 X(z)=\sum_{n=-\infty}^{\infty}x[n]z^{-n}
-\]
+$$
 
-## Causal Z-Transform
+## Causal Formula
 
-\[
+$$
 X(z)=\sum_{n=0}^{\infty}x[n]z^{-n}
-\]
+$$
 
 ## Unit Step
 
 Given:
 
-\[
-x[n]=u[n]
-\]
+`x[n] = u[n]`
 
 Expected:
 
-\[
-X(z)=\frac{z}{z-1}
-\]
-
----
+`X(z) = z/(z-1)`
 
 ## Exponential
 
 Given:
 
-\[
-x[n]=a^n u[n]
-\]
+`x[n] = a^n u[n]`
 
 Expected:
 
-\[
-X(z)=\frac{z}{z-a}
-\]
-
----
+`X(z) = z/(z-a)`
 
 ## Ramp
 
 Given:
 
-\[
-x[n]=nu[n]
-\]
+`x[n] = n u[n]`
 
 Expected:
 
-\[
-X(z)=\frac{z}{(z-1)^2}
-\]
+`X(z) = z/(z-1)^2`
 
----
-
-## Inverse Z-Transform
+## Delayed Impulse
 
 Given:
 
-\[
-X(z)=\frac{z}{z-a}
-\]
+`x[n] = δ[n-k]`
 
 Expected:
 
-\[
-x[n]=a^n u[n]
-\]
+`X(z) = z^-k`
 
 ---
 
 # Part G – Frequently Asked Viva Questions
 
-1. Define Z-Transform.
-2. Why is Z-Transform used?
+1. Define the Z-Transform.
+2. Why is the Z-Transform used?
 3. State the general Z-Transform formula.
 4. What is a causal signal?
-5. What is the inverse Z-Transform?
-6. What is SymPy?
-7. Why use symbolic computation?
-8. What does `sp.symbols()` do?
-9. What does `sp.summation()` do?
-10. What is `sp.oo`?
-11. Why use `z^{-n}`?
-12. Why does the summation start from zero?
-13. State the Z-Transform of a unit-step signal.
-14. State the Z-Transform of an exponential signal.
-15. State the Z-Transform of a ramp signal.
-16. What is the Z-Transform of a delayed impulse?
-17. Difference between forward and inverse Z-Transform.
-18. Difference between Z-Transform and Fourier Transform.
-19. Why use `sp.pprint()`?
-20. Why might `inverse_z_transform()` not work in older SymPy versions?
+5. What is an inverse Z-Transform?
+6. Why is SymPy used?
+7. What does `sp.symbols()` do?
+8. What does `sp.summation()` do?
+9. What is `sp.oo`?
+10. Why is `z**(-n)` used?
+11. State the Z-Transform of a unit-step signal.
+12. State the Z-Transform of an exponential signal.
+13. State the Z-Transform of a ramp signal.
+14. State the Z-Transform of a delayed impulse.
+15. Difference between Z-Transform and Fourier Transform.
+16. Difference between Forward and Inverse Z-Transform.
+17. Why does the summation begin at zero for causal signals?
+18. What is ROC (Region of Convergence)?
+19. Why is the Z-Transform useful in DSP?
+20. Where is the Z-Transform used in real life?

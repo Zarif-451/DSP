@@ -60,148 +60,186 @@ $$
 
 ------------------------------------------------------------------------
 
-# Part B -- Differences (Very Common Viva)
+# Part B – Differences
 
 ## Analog Signal vs Digital Signal
 
-  **Analog Signal**           **Digital Signal**
-  --------------------------- --------------------------------
-  Continuous in time          Discrete in time
-  Represented as `x(t)`       Represented as `x[n]`
-  Infinite number of values   Finite sampled values
-  More sensitive to noise     Less sensitive to noise
-  Harder to process           Easier to process by computers
+| **Analog Signal** | **Digital Signal** |
+|-------------------|--------------------|
+| Continuous in time | Discrete in time |
+| Represented as `x(t)` | Represented as `x[n]` |
+| Infinite number of values | Finite sampled values |
+| More sensitive to noise | Less sensitive to noise |
+| Harder to process | Easier to process by computers |
 
-------------------------------------------------------------------------
+---
 
-## x(t) vs x\[n\]
+## x(t) vs x[n]
 
-  **x(t)**                   **x\[n\]**
-  -------------------------- ---------------------------------
-  Continuous-time signal     Discrete-time signal
-  Uses continuous time `t`   Uses sample index `n`
-  Exists at every instant    Exists only at sampled instants
-  Analog representation      Digital representation
+| **x(t)** | **x[n]** |
+|-----------|----------|
+| Continuous-time signal | Discrete-time signal |
+| Uses continuous time `t` | Uses sample index `n` |
+| Exists at every instant | Exists only at sampled instants |
+| Analog representation | Digital representation |
 
-------------------------------------------------------------------------
+---
 
 ## Sample Point vs Sample Value
 
-  -----------------------------------------------------------------------
-  **Sample Point**                    **Sample Value**
-  ----------------------------------- -----------------------------------
-  Time/index where sampling occurs    Amplitude at that sampling instant
+| **Sample Point** | **Sample Value** |
+|------------------|------------------|
+| Time/index where sampling occurs | Amplitude at that sampling instant |
+| Represents **when** the signal is measured | Represents **what value** the signal has |
+| Stored in the `time` array | Stored in the `signal` (or `amplitude`) array |
 
-  Represents **when** the signal is   Represents **what value** the
-  measured                            signal has
-
-  Stored in the `time` array          Stored in the `signal` (or
-                                      amplitude) array
-  -----------------------------------------------------------------------
-
-------------------------------------------------------------------------
+---
 
 ## Signal Frequency vs Sampling Frequency
 
-  -----------------------------------------------------------------------
-  **Signal Frequency (`f_signal`)**     **Sampling Frequency (`f_s`)**
-  ------------------------------------- ---------------------------------
-  Number of cycles per second           Number of samples taken per
-                                        second
+| **Signal Frequency (`f_signal`)** | **Sampling Frequency (`f_s`)** |
+|-----------------------------------|--------------------------------|
+| Number of cycles per second | Number of samples taken per second |
+| Property of the signal | Property of the sampling process |
+| Determines how fast the wave oscillates | Determines how often the wave is measured |
+| Used inside `sin(2πft)` | Used to create the time vector (`1/f_s`) |
+| Unit: Hertz (Hz) | Unit: Hertz (Hz) |
 
-  Property of the signal                Property of the sampling process
-
-  Determines how fast the wave          Determines how often the wave is
-  oscillates                            measured
-
-  Used inside `sin(2πft)`               Used to create the time vector
-                                        (`1/f_s`)
-
-  Unit: Hertz (Hz)                      Unit: Hertz (Hz)
-  -----------------------------------------------------------------------
-
-------------------------------------------------------------------------
+---
 
 ## `np.arange()` vs `np.linspace()`
 
-  -----------------------------------------------------------------------
-  **np.arange()**                   **np.linspace()**
-  --------------------------------- -------------------------------------
-  Uses a fixed step size            Uses a fixed number of points
+| **`np.arange()`** | **`np.linspace()`** |
+|-------------------|---------------------|
+| Uses a fixed step size | Uses a fixed number of points |
+| Stop value is usually excluded | Endpoint is included by default |
+| Good when spacing is known | Good when total samples are known |
+| Syntax: `np.arange(start, stop, step)` | Syntax: `np.linspace(start, stop, num)` |
 
-  Stop value is usually excluded    Endpoint is included by default
-
-  Good when spacing is known        Good when total samples are known
-
-  Syntax:                           Syntax:
-  `np.arange(start, stop, step)`    `np.linspace(start, stop, num)`
-  -----------------------------------------------------------------------
-
-------------------------------------------------------------------------
+---
 
 ## `plt.plot()` vs `plt.stem()`
 
-  **plt.plot()**                       **plt.stem()**
-  ------------------------------------ -----------------------------------
-  Used for continuous signals          Used for discrete signals
-  Connects adjacent points             Draws vertical stems with markers
-  Produces a smooth curve              Shows individual samples clearly
-  Best for analog-like visualization   Best for sampled signals
+| **`plt.plot()`** | **`plt.stem()`** |
+|------------------|------------------|
+| Used for continuous signals | Used for discrete signals |
+| Connects adjacent points | Draws vertical stems with markers |
+| Produces a smooth curve | Shows individual samples clearly |
+| Best for analog-like visualization | Best for sampled signals |
 
-------------------------------------------------------------------------
+---
 
 ## `plt.plot()` vs `plt.scatter()`
 
-  -----------------------------------------------------------------------
-  **plt.plot()**                   **plt.scatter()**
-  -------------------------------- --------------------------------------
-  Connects data points             Displays only individual points
+| **`plt.plot()`** | **`plt.scatter()`** |
+|------------------|---------------------|
+| Connects data points | Displays only individual points |
+| Suitable for continuous signals | Suitable for showing sample locations |
+| Creates a line graph | Creates a scatter plot |
 
-  Suitable for continuous signals  Suitable for showing sample locations
+---
 
-  Creates a line graph             Creates a scatter plot
-  -----------------------------------------------------------------------
+## Frequency vs Period
 
+| **Frequency** | **Period** |
+|---------------|------------|
+| Number of cycles per second | Time required to complete one cycle |
+| Symbol: `f` | Symbol: `T` |
+| Unit: Hertz (Hz) | Unit: Second (s) |
+| Formula: `f = 1/T` | Formula: `T = 1/f` |
 
-------------------------------------------------------------------------
+---
 
-## Frequency vs Sampling Frequency
+## Time Domain vs Frequency Domain
 
-  Signal Frequency              Sampling Frequency
-  ----------------------------- ----------------------------------
-  Number of cycles per second   Number of samples per second
-  Property of the signal        Property of the sampling process
-  Used inside sin()             Used to create the time vector
-  Symbol: f or f_signal         Symbol: fs
+| **Time Domain** | **Frequency Domain** |
+|-----------------|----------------------|
+| Signal represented with respect to time | Signal represented with respect to frequency |
+| X-axis is time | X-axis is frequency |
+| Shows waveform | Shows frequency components |
+| Used for observing signal behavior | Used for analyzing spectral content |
 
-------------------------------------------------------------------------
+---
 
-## np.arange() vs np.linspace()
+## Continuous Signal vs Discrete Signal
 
-  np.arange()                   np.linspace()
-  ----------------------------- -----------------------------------
-  Uses step size                Uses number of points
-  Stop value usually excluded   Endpoint included by default
-  Good when spacing is known    Good when total samples are known
+| **Continuous Signal** | **Discrete Signal** |
+|-----------------------|---------------------|
+| Exists at every instant of time | Exists only at sampled instants |
+| Uses `plot()` | Uses `stem()` |
+| Represented as `x(t)` | Represented as `x[n]` |
+| Infinite number of values | Finite sampled values |
 
-------------------------------------------------------------------------
+---
 
-## plt.plot() vs plt.stem()
+## Sample Point vs Sample Index
 
-  plot()               stem()
-  -------------------- ----------------------
-  Continuous signals   Discrete signals
-  Connects points      Draws vertical stems
-  Smooth curve         Individual samples
+| **Sample Point** | **Sample Index** |
+|------------------|------------------|
+| Actual time instant | Position number of the sample |
+| Example: `0.1 s` | Example: `n = 1` |
+| Measured in seconds | Dimensionless integer |
 
-------------------------------------------------------------------------
+---
 
-## plt.plot() vs plt.scatter()
+## `plt.plot()` vs `plt.scatter()` vs `plt.stem()`
 
-  plot()                  scatter()
-  ----------------------- -------------------
-  Connects points         Only plots points
-  Continuous appearance   Separate markers
+| **`plt.plot()`** | **`plt.scatter()`** | **`plt.stem()`** |
+|------------------|---------------------|------------------|
+| Connects points | Only plots points | Draws stems and markers |
+| Continuous signals | Data visualization | Discrete-time signals |
+| Smooth curves | Independent points | Sampled signals |
+
+---
+
+## `np.arange()` vs `range()`
+
+| **`np.arange()`** | **`range()`** |
+|-------------------|---------------|
+| Returns a NumPy array | Returns a Python range object |
+| Supports decimal steps | Integer steps only |
+| Used in numerical computing | Used in loops |
+| Faster for array operations | Mainly for iteration |
+
+---
+
+## `label` vs `title`
+
+| **`label`** | **`title`** |
+|--------------|-------------|
+| Names a plotted graph | Names the entire graph |
+| Displayed using `plt.legend()` | Displayed automatically at the top |
+| Used when multiple plots exist | Used once per figure |
+
+---
+
+## `xlabel` vs `ylabel`
+
+| **`xlabel()`** | **`ylabel()`** |
+|----------------|----------------|
+| Labels the x-axis | Labels the y-axis |
+| Usually represents Time | Usually represents Amplitude |
+| Appears below the graph | Appears on the left side |
+
+---
+
+## `axhline()` vs `axvline()`
+
+| **`axhline()`** | **`axvline()`** |
+|-----------------|-----------------|
+| Draws a horizontal line | Draws a vertical line |
+| Parallel to x-axis | Parallel to y-axis |
+| Example: `y = 0` | Example: `x = 0` |
+
+---
+
+## `grid()` vs `legend()`
+
+| **`grid()`** | **`legend()`** |
+|--------------|----------------|
+| Displays grid lines | Displays labels of plotted graphs |
+| Helps read graph values | Helps identify multiple graphs |
+| Called using `plt.grid()` | Called using `plt.legend()` |
 
 ------------------------------------------------------------------------
 

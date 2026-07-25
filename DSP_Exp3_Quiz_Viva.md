@@ -6,101 +6,97 @@
 
 # Part A – Theory
 
-## Q1. What is signal manipulation?
+## Q1. What is Signal Manipulation?
 
 **Answer:**
 
-Signal manipulation is the process of modifying a signal without changing its fundamental meaning. Common operations include time shifting, time reversal, time scaling, amplitude scaling, and convolution. These operations are widely used in Digital Signal Processing (DSP). 
+Signal manipulation is the process of modifying a signal without changing its original information. Common operations include time shifting, time reversal, time scaling, amplitude scaling, and convolution. These operations are fundamental in Digital Signal Processing (DSP).
 
 ---
 
-## Q2. What is time shifting?
+## Q2. What is Time Shifting?
 
 **Answer:**
 
-Time shifting moves a signal along the time axis without changing its shape or amplitude. A right shift is called **delay**, while a left shift is called **advance**.
+Time shifting moves a signal along the time axis without changing its shape or amplitude. A shift to the right is called **delay**, while a shift to the left is called **advance**.
 
-### Formula
+### Delay
 
-- Delay:
-
-\[
+$$
 y[n]=x[n-k]
-\]
+$$
 
-- Advance:
+### Advance
 
-\[
+$$
 y[n]=x[n+k]
-\]
+$$
 
 ---
 
-## Q3. What is time reversal (reflection)?
+## Q3. What is Time Reversal (Reflection)?
 
 **Answer:**
 
-Time reversal flips the signal about the vertical axis. Every sample at index \(n\) moves to index \(-n\). This operation is commonly used in convolution and correlation.
+Time reversal flips a signal about the vertical axis. Every sample at index `n` moves to `-n`. Reflection is widely used in convolution and correlation.
 
 ### Formula
 
-\[
+$$
 y[n]=x[-n]
-\]
+$$
 
 ---
 
-## Q4. What is time scaling?
+## Q4. What is Time Scaling?
 
 **Answer:**
 
-Time scaling changes the duration of a signal. Stretching expands the signal in time, while compression reduces its duration.
+Time scaling changes the duration of a signal. Stretching makes the signal wider, while compression makes it narrower.
 
-### Formula
+### Stretching
 
-Stretching:
+$$
+y[n]=x(n/a),\qquad a>1
+$$
 
-\[
-y[n]=x(n/a),\quad a>1
-\]
+### Compression
 
-Compression:
-
-\[
-y[n]=x(an),\quad a>1
-\]
+$$
+y[n]=x(an),\qquad a>1
+$$
 
 ---
 
-## Q5. What is amplitude scaling?
+## Q5. What is Amplitude Scaling?
 
 **Answer:**
 
-Amplitude scaling changes only the magnitude of the signal while keeping the time axis unchanged.
+Amplitude scaling changes only the magnitude of a signal while keeping the time axis unchanged.
 
 ### Formula
 
-\[
-y[n]=Ax[n]
-\]
+$$
+y[n]=A\,x[n]
+$$
 
-- \(A>1\): Amplification
-- \(0<A<1\): Attenuation
-- \(A<0\): Inversion
+- `A > 1` → Amplification
+- `0 < A < 1` → Attenuation
+- `A < 0` → Inversion
 
 ---
 
-## Q6. What is convolution?
+## Q6. What is Convolution?
 
 **Answer:**
 
-Convolution combines two discrete-time signals to determine the output of an LTI system. It is one of the most important operations in DSP because it describes how systems respond to inputs.
+Convolution combines two discrete-time signals to determine the output of an LTI (Linear Time-Invariant) system. It describes how a system responds to an input signal.
 
 ### Formula
 
-\[
+$$
 y[n]=x[n]*h[n]
-\]
+$$
 
 ---
 
@@ -108,8 +104,8 @@ y[n]=x[n]*h[n]
 
 ## Delay vs Advance
 
-| Delay | Advance |
-|-------|---------|
+| **Delay** | **Advance** |
+|-----------|-------------|
 | Signal shifts right | Signal shifts left |
 | Formula: `x[n-k]` | Formula: `x[n+k]` |
 | Output occurs later | Output occurs earlier |
@@ -118,19 +114,19 @@ y[n]=x[n]*h[n]
 
 ## Reflection vs Time Shifting
 
-| Reflection | Time Shifting |
-|------------|---------------|
+| **Reflection** | **Time Shifting** |
+|----------------|-------------------|
 | Flips the signal | Moves the signal |
 | Formula: `x[-n]` | Formula: `x[n±k]` |
-| Changes time direction | Keeps time direction unchanged |
+| Changes time direction | Time direction remains the same |
 
 ---
 
 ## Stretching vs Compression
 
-| Stretching | Compression |
-|------------|-------------|
-| Expands signal | Compresses signal |
+| **Stretching** | **Compression** |
+|----------------|-----------------|
+| Expands the signal | Compresses the signal |
 | Signal becomes wider | Signal becomes narrower |
 | `x(n/a)` | `x(an)` |
 
@@ -138,94 +134,94 @@ y[n]=x[n]*h[n]
 
 ## Amplitude Scaling vs Time Scaling
 
-| Amplitude Scaling | Time Scaling |
-|-------------------|--------------|
+| **Amplitude Scaling** | **Time Scaling** |
+|-----------------------|------------------|
 | Changes amplitude | Changes time axis |
-| Shape unchanged in time | Duration changes |
-| Formula: `Ax[n]` | Formula: `x(an)` or `x(n/a)` |
+| Time remains unchanged | Duration changes |
+| Formula: `A*x[n]` | Formula: `x(an)` or `x(n/a)` |
 
 ---
 
-## plot() vs stem()
+## `plt.plot()` vs `plt.stem()`
 
-| `plot()` | `stem()` |
-|-----------|----------|
-| Continuous signals | Discrete signals |
-| Connects points | Draws stems |
-| Smooth curve | Individual samples |
+| **`plt.plot()`** | **`plt.stem()`** |
+|------------------|------------------|
+| Used for continuous signals | Used for discrete signals |
+| Connects adjacent points | Draws stems and markers |
+| Produces smooth curves | Shows individual samples |
 
 ---
 
-## np.arange() vs np.linspace()
+## `np.arange()` vs `np.linspace()`
 
-| `np.arange()` | `np.linspace()` |
-|---------------|-----------------|
+| **`np.arange()`** | **`np.linspace()`** |
+|-------------------|---------------------|
 | Uses step size | Uses number of points |
-| Stop excluded | Endpoint included |
+| Stop value excluded | Endpoint included by default |
 
 ---
 
 # Part C – Python Viva
 
-### Why is `np.arange()` used?
+## Why is `np.arange()` used?
 
-To generate discrete time indices for the signal.
+It generates discrete sample indices or time values using a fixed step size.
 
-### Why is `np.linspace()` used?
+## Why is `np.linspace()` used?
 
-To generate evenly spaced values over a specified interval, especially for stretching/compression visualization.
+It generates a specified number of evenly spaced values over an interval.
 
-### Why is `plt.subplot()` used?
+## Why is `plt.subplot()` used?
 
-It divides one figure into multiple smaller graphs so different signal operations can be compared side by side.
+It divides a figure into multiple plots so different signal operations can be compared together.
 
-### Why is `plt.stem()` used?
+## Why is `plt.stem()` used?
 
-It represents discrete-time signals using vertical stems and markers.
+It represents discrete-time signals using stems and markers instead of connected lines.
 
-### What does `plt.tight_layout()` do?
+## What does `plt.tight_layout()` do?
 
-It automatically adjusts spacing between subplots so titles, labels, and axes do not overlap.
+It automatically adjusts spacing between subplots to prevent overlapping titles and labels.
 
-### What does `plt.figure(figsize=(12,12))` do?
+## What does `plt.figure(figsize=(12,12))` do?
 
-It creates a new figure and sets its width and height in inches.
+It creates a new figure and specifies its width and height in inches.
 
 ---
 
 # Part D – Code Viva
 
-### Why is `origin` used?
+## Why is `origin` used?
 
-It sets the reference index (n = 0) for the discrete-time signal.
+It specifies the reference index corresponding to `n = 0`.
 
-### Why is `time = np.arange(...)` created?
+## Why is `time = np.arange(...)` created?
 
-It generates the sample indices used on the x-axis.
+It generates the sample indices used on the horizontal axis.
 
-### Why is `delay = 4` used?
+## Why is `delay = 4` used?
 
-To shift the signal four samples to the right.
+To delay the signal by four samples.
 
-### Why is `advance = 4` used?
+## Why is `advance = 4` used?
 
-To shift the signal four samples to the left.
+To advance the signal by four samples.
 
-### Why is `reflected_time = -time` used?
+## Why is `reflected_time = -time` used?
 
-To reverse the signal in time.
+To perform time reversal (reflection).
 
-### Why is `scale = 4` used?
+## Why is `scale = 4` used?
 
-To stretch the signal.
+To stretch the signal in time.
 
-### Why is `scale = 0.25` used?
+## Why is `scale = 0.25` used?
 
-To compress the signal.
+To compress the signal in time.
 
-### Why is `scaled_signal = scale * signal` used?
+## Why is `scaled_signal = scale * signal` used?
 
-To multiply every amplitude by the scaling factor.
+To scale the signal amplitude.
 
 ---
 
@@ -239,14 +235,14 @@ To multiply every amplitude by the scaling factor.
 6. Define time scaling.
 7. Difference between stretching and compression.
 8. Define amplitude scaling.
-9. What happens when A < 0?
+9. What happens when `A < 0`?
 10. Define convolution.
 11. Why is convolution important?
 12. What is an LTI system?
 13. What is a kernel in convolution?
-14. Why use `stem()` for discrete signals?
-15. Why use `subplot()`?
-16. Why use `tight_layout()`?
+14. Why use `plt.stem()`?
+15. Why use `plt.subplot()`?
+16. Why use `plt.tight_layout()`?
 17. Difference between amplitude scaling and time scaling.
 18. Difference between delay and reflection.
 19. Explain `x[n-k]`.
@@ -256,12 +252,12 @@ To multiply every amplitude by the scaling factor.
 
 # Part F – Observation Summary
 
-| Operation | Mathematical Form | Effect |
-|-----------|-------------------|--------|
+| **Operation** | **Mathematical Form** | **Effect** |
+|---------------|-----------------------|------------|
 | Delay | `x[n-k]` | Shift Right |
 | Advance | `x[n+k]` | Shift Left |
 | Reflection | `x[-n]` | Time Reversal |
 | Stretching | `x(n/a)` | Signal Expansion |
 | Compression | `x(an)` | Signal Compression |
-| Amplitude Scaling | `Ax[n]` | Amplitude Change |
-| Convolution | `x[n]*h[n]` | System Response |
+| Amplitude Scaling | `A*x[n]` | Amplitude Change |
+| Convolution | `x[n] * h[n]` | System Response |
